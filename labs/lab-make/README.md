@@ -219,7 +219,7 @@ Abrí `ejercicio1/Makefile` y completá los cuatro TODOs.
 #### TODO 1 — Definir la variable `CC`
 
 ```makefile
-CC :=
+CC := gcc
 ```
 
 `CC` es la variable estándar de Make para el **compilador de C**. Por convención
@@ -234,7 +234,7 @@ esta línea y todo el Makefile sigue funcionando sin tocar nada más.
 #### TODO 2 — Definir la variable `CFLAGS`
 
 ```makefile
-CFLAGS :=
+CFLAGS := -Wall
 ```
 
 `CFLAGS` (_C Flags_) contiene las opciones que le pasamos al compilador.
@@ -251,7 +251,7 @@ impiden la compilación, pero señalan código potencialmente problemático
 
 ```makefile
 $(PROGRAMA): suma.c
-	# Escribí el comando aquí
+	$(CC) $(CFLAGS) suma.c -o $(PROGRAMA)
 ```
 
 Este es el corazón del Makefile: el comando que convierte `suma.c` en el ejecutable.
@@ -274,7 +274,8 @@ gcc generaría un ejecutable llamado `a.out` por defecto.
 
 ```makefile
 clean:
-	# Escribí el comando aquí
+	rm -f $(PROGRAMA)
+
 ```
 
 Escribí el comando que elimina el ejecutable generado. Usá `rm -f $(PROGRAMA)`.
@@ -585,7 +586,7 @@ Desglose del comando:
 
 ```makefile
 # Declarar targets que no son archivos
-```
+
 
 Agregá la declaración `.PHONY` para los targets `all` y `clean`. Si existiera
 un archivo llamado `all` o `clean` en el directorio, Make pensaría que esos
@@ -625,7 +626,7 @@ ejecución y la otra, ¿qué hace Make en la segunda ejecución?
 Opciones: `RECOMPILA` / `NO_RECOMPILA` / `DA_ERROR`
 
 ```
-P1=???
+P1=NO_RECOMPILA
 ```
 
 ---
@@ -639,7 +640,7 @@ llamado `clean`?
 Opciones: `SI` / `NO`
 
 ```
-P2=???
+P2=NO
 ```
 
 ---
@@ -652,7 +653,7 @@ P2=???
 Opciones: `PARA_CREAR_ARCHIVOS` / `PARA_EVITAR_CONFLICTOS_DE_NOMBRES` / `PARA_COMPILAR_MAS_RAPIDO`
 
 ```
-P3=???
+P3=PARA_EVITAR_CONFLICTOS_DE_NOMBRES
 ```
 
 ---
